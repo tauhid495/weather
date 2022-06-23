@@ -3,7 +3,9 @@ import { themeChange } from 'theme-change'
 import Home from '../pages/Home';
 
 
+
 const Navbar = () => {
+
 
     useEffect(() => {
         themeChange(false);
@@ -19,7 +21,10 @@ const Navbar = () => {
                     {/* <!-- Navbar --> */}
                     <div class="w-full navbar ">
 
-                        <div class="flex-1 px-2 mx-2">Navbar Title</div>
+                        <div class="flex-1 px-2 mx-2 text-xl font-semibold">
+                            Weather Trend
+
+                        </div>
                         <div class="flex-none lg:hidden">
                             <div>
                                 <label className="swap swap-rotate">
