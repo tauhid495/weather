@@ -1,11 +1,16 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { themeChange } from 'theme-change'
 import Home from '../pages/Home';
 
 
 
 const Navbar = () => {
+    const [city, setCity] = useState(null);
 
+    const handleSearch = (e) => {
+        const searchCity = e.target.value;
+        setCity(searchCity);
+    }
 
     useEffect(() => {
         themeChange(false);
@@ -25,6 +30,12 @@ const Navbar = () => {
                             Weather Trend
 
                         </div>
+
+                        {/* search bar */}
+                        <div onChange={handleSearch} class="form-control">
+                            <input type="text" placeholder="Search City" class="input input-bordered" />
+                        </div>
+
                         <div class="flex-none lg:hidden">
                             <div>
                                 <label className="swap swap-rotate">
@@ -68,7 +79,7 @@ const Navbar = () => {
                         </div>
                     </div>
                     {/* <!-- Page content here --> */}
-                    <Home />
+                    <Home findCity={city} />
                 </div>
                 <div class="drawer-side">
                     <label for="my-drawer-3" class="drawer-overlay"></label>

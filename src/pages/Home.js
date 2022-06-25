@@ -1,31 +1,31 @@
+import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import CurrentWeatherCard from '../Components/CurrentWeatherCard';
-import axios from 'axios';
 
-const Home = () => {
-    const url = `http://api.openweathermap.org/geo/1.0/reverse`;
-    const API_KEY = `84ec0b0676bd623d894ba70cbb7767e9`;
-    const [latitude, setLatitude] = useState(null);
-    const [longitude, setLongitude] = useState(null);
-    const [tempareture, setTempareture] = useState(null);
+const Home = ({ findCity }) => {
+    const API_KEY = `e6f0080b536e470e884124723222306`;
     const [city, setCity] = useState(null);
+    const [cityName, setCityName] = useState(null);
     const [country, setCountry] = useState(null);
 
 
+    useEffect(() => {
+        setCity(findCity);
+    }, [findCity]);
 
     useEffect(() => {
-        navigator.geolocation.getCurrentPosition(function (position) {
-            setLatitude(position.coords.latitude);
-            setLongitude(position.coords.longitude);
-        })
-        axios.get(`${url}?lat=${latitude}&lon=${longitude}&units=metric&appid=${API_KEY}`)
+        // navigator.geolocation.getCurrentPosition(function (position) {
+        //     setLatitude(position.coords.latitude);
+        //     setLongitude(position.coords.longitude);
+        // // })
+        // console.log(latitude, longitude);
+        axios.get(`https://api.weatherapi.com/v1/forecast.json?key=${API_KEY}&q=${city}&days=7&aqi=no&alerts=no`)
             .then((weatherData) => {
-                console.log(weatherData.data[0]);
-                setTempareture(weatherData.data[0].name);
-                setCity(weatherData.data[0].name)
-                setCountry(weatherData.data[0].country)
+                console.log(weatherData.data);
+                setCityName(weatherData.data.location.name)
+                setCountry(weatherData.data.location.country)
             })
-    }, [latitude, longitude])
+    }, [city]);
 
     return (
         <div className='px-20'>
@@ -33,7 +33,7 @@ const Home = () => {
                 <div class="grid flex-grow md:w-1/2 card bg-base-300 rounded-box ">
 
                     <CurrentWeatherCard
-                        city={city}
+                        cityName={cityName}
                         country={country}
                     />
                 </div>
