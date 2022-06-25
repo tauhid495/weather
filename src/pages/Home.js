@@ -7,6 +7,11 @@ const Home = ({ findCity }) => {
     const [city, setCity] = useState(null);
     const [cityName, setCityName] = useState(null);
     const [country, setCountry] = useState(null);
+    const [date, setDate] = useState(null);
+    const [temp, setTemp] = useState(null);
+    const [img, setImg] = useState(null);
+    const [text, setText] = useState(null);
+
 
 
     useEffect(() => {
@@ -24,6 +29,11 @@ const Home = ({ findCity }) => {
                 console.log(weatherData.data);
                 setCityName(weatherData.data.location.name)
                 setCountry(weatherData.data.location.country)
+                setDate(weatherData.data.location.localtime)
+                setTemp(weatherData.data.current.temp_c)
+                setImg(weatherData.data.current.condition.icon)
+                setText(weatherData.data.current.condition.text)
+
             })
     }, [city]);
 
@@ -35,6 +45,10 @@ const Home = ({ findCity }) => {
                     <CurrentWeatherCard
                         cityName={cityName}
                         country={country}
+                        date={date}
+                        temp={temp}
+                        img={img}
+                        text={text}
                     />
                 </div>
                 <div class="divider lg:divider-horizontal"></div>
