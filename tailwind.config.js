@@ -8,7 +8,7 @@ module.exports = {
       {
         dark: {
 
-          "primary": "#3e3e5b",
+          "primary": "#CCCCFF",
 
           "secondary": "#60a9c4",
 
@@ -31,7 +31,7 @@ module.exports = {
       {
         light: {
 
-          "primary": "#ffeecc",
+          "primary": "#ffffff",
 
           "secondary": "#f25ca9",
 

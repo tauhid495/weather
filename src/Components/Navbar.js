@@ -18,22 +18,21 @@ const Navbar = () => {
 
 
     return (
-        <div>
-
+        <div className=''>
             <div class="drawer drawer-end">
                 <input id="my-drawer-3" type="checkbox" class="drawer-toggle" />
                 <div class="drawer-content flex flex-col">
                     {/* <!-- Navbar --> */}
-                    <div class="w-full navbar ">
+                    <div class="w-full navbar bg-base-300 bg-opacity-70 ">
 
-                        <div class="flex-1 px-2 mx-2 text-xl font-semibold">
+                        <div class="flex-1 px-2 mx-2 text-xl md:text-3xl font-semibold">
                             Weather Trend
 
                         </div>
 
                         {/* search bar */}
-                        <div onChange={handleSearch} class="form-control">
-                            <input type="text" placeholder="Search City" class="input input-bordered" />
+                        <div onChange={handleSearch} className="form-control hidden md:block">
+                            <input type="text" placeholder="Search City" className="input input-bordered w-96" />
                         </div>
 
                         <div class="flex-none lg:hidden">
@@ -60,7 +59,7 @@ const Navbar = () => {
                         <div class="flex-none hidden lg:block">
                             <ul class="menu menu-horizontal">
                                 {/* <!-- Navbar menu content here --> */}
-                                <li><a>Navbar Item 1</a></li>
+                                <li><a></a></li>
                                 <li>
                                     <label className="swap swap-rotate">
 
@@ -79,11 +78,22 @@ const Navbar = () => {
                         </div>
                     </div>
                     {/* <!-- Page content here --> */}
-                    <Home findCity={city} />
+
+                    {/* search bar */}
+                    <div className='md:hidden block text-center mx-auto mb-7'>
+                        <p className='text-xl mb-2'>Search Your City :  </p>
+                        <div onChange={handleSearch} className="form-control ">
+                            <input type="text" placeholder="Search" class="input input-bordered w-full" />
+                        </div>
+                    </div>
+
+                    <div className='mt-5'>
+                        <Home findCity={city} />
+                    </div>
                 </div>
                 <div class="drawer-side">
                     <label for="my-drawer-3" class="drawer-overlay"></label>
-                    <ul class="menu p-4 overflow-y-auto w-80 bg-base-100">
+                    <ul class="menu p-4 overflow-y-auto w-1/2 bg-base-100">
                         {/* <!-- Sidebar content here --> */}
                         <li><a>Sidebar Item 1</a></li>
                         <li><a>Sidebar Item 2</a></li>
@@ -92,7 +102,7 @@ const Navbar = () => {
 
                 </div>
             </div>
-        </div>
+        </div >
     );
 };
 

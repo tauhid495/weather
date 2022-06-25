@@ -1,12 +1,12 @@
 
 import Navbar from './Components/Navbar';
 
+
 function App() {
 
   return (
-    <div>
+    <div className="bg-[url('/src/asset/20.jpg')] bg-cover">
       <Navbar />
-
     </div>
 
   );
