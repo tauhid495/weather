@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import CurrentWeatherCard from '../Components/CurrentWeatherCard';
+import DailyForcast from './DailyForcast';
 
 const Home = ({ findCity }) => {
     const API_KEY = `e6f0080b536e470e884124723222306`;
@@ -17,6 +18,7 @@ const Home = ({ findCity }) => {
     const [cloud, setCloud] = useState(null);
     const [uv, setUv] = useState(null);
     const [visibility, setVisibility] = useState(null);
+    const [dayForcast, setDayForcast] = useState([]);
 
 
 
@@ -32,7 +34,7 @@ const Home = ({ findCity }) => {
         // console.log(latitude, longitude);
         axios.get(`https://api.weatherapi.com/v1/forecast.json?key=${API_KEY}&q=${city}&days=7&aqi=no&alerts=no`)
             .then((weatherData) => {
-                console.log(weatherData.data);
+                // console.log(weatherData.data);
                 setCityName(weatherData.data.location.name)
                 setCountry(weatherData.data.location.country)
                 setDate(weatherData.data.location.localtime)
@@ -45,13 +47,14 @@ const Home = ({ findCity }) => {
                 setCloud(weatherData.data.current.cloud)
                 setUv(weatherData.data.current.uv)
                 setVisibility(weatherData.data.current.vis_km)
+                setDayForcast(weatherData.data.forecast.forecastday)
 
             })
     }, [city]);
 
     return (
         <div className='px-3 md:px-20'>
-            <div class="flex flex-col w-full lg:flex-row">
+            <div class="flex flex-col lg:flex-row">
                 <div class="grid flex-grow md:w-1/2 card bg-base-200 bg-opacity-70 rounded-box ">
 
                     <CurrentWeatherCard
@@ -70,8 +73,10 @@ const Home = ({ findCity }) => {
                     />
                 </div>
                 <div class="divider lg:divider-horizontal"></div>
-                <div class="grid flex-grow md:w-1/2 card bg-base-300 bg-opacity-70 rounded-box place-items-center">
-                    content
+
+                <div class="md:w-1/2 overflow-hidden scrollbar-thin scrollbar-thumb-gray-600 overflow-x-scroll scrollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar-hide hover:scrollbar-default">
+
+                    <DailyForcast dayForcast={dayForcast} />
                 </div>
             </div>
         </div>

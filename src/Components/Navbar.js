@@ -14,6 +14,7 @@ const Navbar = () => {
 
     useEffect(() => {
         themeChange(false);
+
     }, [])
 
 
