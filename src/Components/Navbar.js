@@ -19,7 +19,7 @@ const Navbar = () => {
 
 
     return (
-        <div className=''>
+        <div className='scrollbar-hide'>
             <div class="drawer drawer-end">
                 <input id="my-drawer-3" type="checkbox" class="drawer-toggle" />
                 <div class="drawer-content flex flex-col">

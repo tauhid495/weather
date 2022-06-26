@@ -1,12 +1,12 @@
 
 import Navbar from './Components/Navbar';
-import Home from './pages/Home';
+
 
 
 function App() {
 
   return (
-    <div className="bg-[url('/src/asset/20.jpg')] bg-cover">
+    <div className="bg-[url('/src/asset/20.jpg')] bg-cover scrollbar-hide">
       <Navbar />
 
     </div>

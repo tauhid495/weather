@@ -3,10 +3,11 @@ import { WiHumidity } from 'react-icons/wi';
 import { BsThermometerHigh, BsThermometerLow } from 'react-icons/bs';
 
 const DailyForcast = ({ dayForcast }) => {
-    console.log(dayForcast);
+    // console.log(dayForcast);
 
     return (
-        <div className='w-[650px]'>
+        <div className='w-[650px] mb-3'>
+
             <div className=' grid grid-cols-3 gap-x-10'>
                 {dayForcast.map(data => {
                     return (
