@@ -16,7 +16,9 @@ const HourlyForcast = ({ hourForcast }) => {
                     return (
                         <div class="mx-2 rounded-2xl bg-base-200 bg-opacity-70 shadow-xl">
                             <div class="p-3 ">
-                                <p>{data.time}</p>
+
+                                <p className='w-24 block mx-auto text-center'>{data.time}</p>
+
 
                                 <img className='block mx-auto h-20 w-20' src={data.condition.icon} alt="" />
                                 <p className='text-2xl text-center font-semibold'>{data.temp_c} °C</p>

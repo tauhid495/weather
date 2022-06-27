@@ -1,16 +1,14 @@
 import { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom';
 import { themeChange } from 'theme-change'
-import Home from '../pages/Home';
 
 
 
-const Navbar = () => {
-    const [city, setCity] = useState(null);
 
-    const handleSearch = (e) => {
-        const searchCity = e.target.value;
-        setCity(searchCity);
-    }
+const Navbar = ({ children, search }) => {
+
+
+
 
     useEffect(() => {
         themeChange(false);
@@ -26,13 +24,14 @@ const Navbar = () => {
                     {/* <!-- Navbar --> */}
                     <div class="w-full navbar bg-base-300 bg-opacity-70 ">
 
-                        <div class="flex-1 px-2 mx-2 text-xl md:text-3xl font-semibold">
+                        <Link class="flex-1 px-2 mx-2 text-xl md:text-3xl font-semibold" to='/'>
                             Weather Trend
+                        </Link>
 
-                        </div>
+                        <Link to='/geolocation'>Geo</Link>
 
                         {/* search bar */}
-                        <div onChange={handleSearch} className="form-control hidden md:block">
+                        <div onChange={search} className="form-control hidden md:block">
                             <input type="text" placeholder="Search City" className="input input-bordered w-96" />
                         </div>
 
@@ -83,21 +82,22 @@ const Navbar = () => {
                     {/* search bar */}
                     <div className='md:hidden block text-center mx-auto mb-7'>
                         <p className='text-xl mb-2'>Search Your City :  </p>
-                        <div onChange={handleSearch} className="form-control ">
+                        <div onChange={search} className="form-control ">
                             <input type="text" placeholder="Search" class="input input-bordered w-full" />
                         </div>
                     </div>
 
                     <div className='mt-5'>
-                        <Home findCity={city} />
+                        {children}
+                        {/* <Home findCity={city} /> */}
                     </div>
                 </div>
                 <div class="drawer-side">
                     <label for="my-drawer-3" class="drawer-overlay"></label>
                     <ul class="menu p-4 overflow-y-auto w-1/2 bg-base-100">
                         {/* <!-- Sidebar content here --> */}
-                        <li><a>Sidebar Item 1</a></li>
-                        <li><a>Sidebar Item 2</a></li>
+                        <li><a>Comming Soon</a></li>
+                        <li><a>Comming Soon</a></li>
 
                     </ul>
 

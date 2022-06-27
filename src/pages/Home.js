@@ -25,8 +25,6 @@ const Home = ({ findCity }) => {
     console.log(hourForcast);
 
 
-
-
     useEffect(() => {
         setCity(findCity);
     }, [findCity]);
@@ -88,8 +86,8 @@ const Home = ({ findCity }) => {
                 </div>
             </div>
 
-            <p className=' mt-5 font-semibold text-center mb-3 text-2xl'>Hourly Forcast</p>
-            <div className='md:my-10 overflow-hidden scrollbar-thin scrollbar-thumb-gray-600 overflow-x-scroll scrollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar-hide hover:scrollbar-default'>
+            <p className='drop-shadow-md` shadow-black mt-5 font-semibold text-center mb-3 text-2xl'>Hourly Forcast</p>
+            <div className='md:mb-10 overflow-hidden scrollbar-thin scrollbar-thumb-gray-600 overflow-x-scroll scrollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar-hide hover:scrollbar-default'>
 
                 <HourlyForcast
 
