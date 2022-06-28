@@ -10,13 +10,13 @@ const CurrentWeatherCard = ({ cityName, country, date, temp, img, text, feels, h
             <div className='flex items-center justify-between'>
                 {/* degree sign= alt + 0176 */}
                 <div className='flex flex-col'>
-                    <div className='text-5xl my-4'>{temp} °C</div>
+                    <div className='text-6xl font-semibold my-4'>{temp} °C</div>
 
                 </div>
 
                 <div className='flex flex-col justify-center items-center'>
-                    <img src={img} alt="weather condition pic" />
-                    <p className='text-base'>{text}</p>
+                    <img className='w-24 h-24' src={img} alt="weather condition pic" />
+                    <p className='text-sm'>{text}</p>
                 </div>
             </div>
             <div className='text-base flex justify-between'>

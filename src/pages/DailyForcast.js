@@ -11,13 +11,13 @@ const DailyForcast = ({ dayForcast }) => {
             <div className=' grid grid-cols-3 gap-x-10'>
                 {dayForcast.map(data => {
                     return (
-                        <div class=" w-52 rounded-2xl bg-base-200 bg-opacity-70 shadow-xl">
-                            <div class="p-3 text-">
+                        <div className=" w-52 rounded-2xl bg-base-200 bg-opacity-70 shadow-xl">
+                            <div className="p-3 text-">
                                 <p className='text-center'>{data.date}</p>
                                 <img className='block mx-auto w-20 h-20' src={data.day.condition.icon} alt="" />
                                 <p className='text-center'>Posibility of rain : {data.day.daily_chance_of_rain} %</p>
                                 <div className='flex justify-between'>
-                                    <h2 class="text-center font-semibold text-2xl my-2">{data.day.avgtemp_c} °C</h2>
+                                    <h2 className="text-center font-semibold text-2xl my-2">{data.day.avgtemp_c} °C</h2>
                                     <div className='flex items-center'>
                                         <WiHumidity className='w-6 h-6' />
                                         <p className='text-sm'>{data.day.avghumidity} %</p>

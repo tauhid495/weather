@@ -5,7 +5,7 @@ import { WiHumidity } from 'react-icons/wi';
 
 const HourlyForcast = ({ hourForcast }) => {
 
-    console.log(hourForcast);
+    // console.log(hourForcast);
 
     return (
         <div className='mb-3'>
@@ -14,8 +14,8 @@ const HourlyForcast = ({ hourForcast }) => {
             <div className='flex'>
                 {hourForcast.map(data => {
                     return (
-                        <div class="mx-2 rounded-2xl bg-base-200 bg-opacity-70 shadow-xl">
-                            <div class="p-3 ">
+                        <div className="mx-2 rounded-2xl bg-base-200 bg-opacity-70 shadow-xl">
+                            <div className="p-3 ">
 
                                 <p className='w-24 block mx-auto text-center'>{data.time}</p>
 
