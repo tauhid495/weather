@@ -10,7 +10,7 @@ const CurrentWeatherCard = ({ cityName, country, date, temp, img, text, feels, h
             <div className='flex items-center justify-between'>
                 {/* degree sign= alt + 0176 */}
                 <div className='flex flex-col'>
-                    <div className='text-6xl font-semibold my-4'>{temp} °C</div>
+                    <div className='text-5xl md:text-6xl font-semibold my-4'>{temp} °C</div>
 
                 </div>
 
