@@ -3,10 +3,14 @@ import React, { useEffect, useState } from 'react';
 import CurrentWeatherCard from '../Components/CurrentWeatherCard';
 import DailyForcast from './DailyForcast';
 import HourlyForcast from './HourlyForcast';
+import HourlyWind from './HourlyWind';
+import Compass from '../asset/compass.png';
+import { BsThermometerSun } from 'react-icons/bs';
+import HourlyPresure from './HourlyPresure';
+
 
 const Home = ({ findCity }) => {
     const API_KEY = `e6f0080b536e470e884124723222306`;
-    const [city, setCity] = useState(null);
     const [cityName, setCityName] = useState(null);
     const [country, setCountry] = useState(null);
     const [date, setDate] = useState(null);
@@ -31,10 +35,9 @@ const Home = ({ findCity }) => {
     useEffect(() => {
 
         if (findCity !== null) {
-            // setCity(findCity);
             axios.get(`https://api.weatherapi.com/v1/forecast.json?key=${API_KEY}&q=${findCity}&days=7&aqi=no&alerts=no`)
                 .then((weatherData) => {
-                    // console.log(weatherData.data);
+                    console.log(weatherData.data);
                     setCityName(weatherData.data.location.name)
                     setCountry(weatherData.data.location.country)
                     setDate(weatherData.data.location.localtime)
@@ -60,9 +63,10 @@ const Home = ({ findCity }) => {
             // console.log(latitude);
             axios.get(`https://api.weatherapi.com/v1/forecast.json?key=${API_KEY}&q=${latitude},${longitude}&days=7&aqi=no&alerts=no`)
                 .then(weatherData => {
+                    // console.log(weatherData.data);
                     setCityName(weatherData.data.location.name)
                     setCountry(weatherData.data.location.country)
-                    setDate(weatherData.data.location.localtime)
+                    setDate(weatherData.data.location.localtime_epoch)
                     setTemp(weatherData.data.current.temp_c)
                     setImg(weatherData.data.current.condition.icon)
                     setText(weatherData.data.current.condition.text)
@@ -82,7 +86,7 @@ const Home = ({ findCity }) => {
 
 
     return (
-        <div className='px-3 md:px-20 md:my-7'>
+        <div className='px-3 md:px-20 md:mt-7'>
             <div className="flex flex-col lg:flex-row">
                 <div className="grid flex-grow md:w-1/2 card bg-base-200 bg-opacity-70 rounded-box ">
 
@@ -111,14 +115,43 @@ const Home = ({ findCity }) => {
                 </div>
             </div>
 
-            <p className='drop-shadow-md` shadow-black mt-5 font-semibold text-center mb-3 text-2xl'>Hourly Forcast</p>
-            <div className='md:mb-10 overflow-hidden scrollbar-thin scrollbar-thumb-gray-600 overflow-x-scroll scrollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar-hide hover:scrollbar-default'>
+            <p className='drop-shadow-md md:hidden shadow-black mt-5 font-semibold text-center mb-3 text-2xl'>Hourly Forcast</p>
+
+            <div className='md:my-10 overflow-hidden scrollbar-thin scrollbar-thumb-gray-600 overflow-x-scroll scrollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar-hide hover:scrollbar-default'>
 
                 <HourlyForcast
 
                     hourForcast={hourForcast}
                 />
             </div>
+
+            <dir className='md:flex'>
+                <div className='flex mr-2 md:w-1/2 items-center my-10 overflow-hidden scrollbar-thin scrollbar-thumb-gray-600 overflow-x-scroll scrollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar-hide hover:scrollbar-default'>
+                    <div className='w-2/12'>
+                        <img className='w-full mr-2' src={Compass} alt="" />
+                    </div>
+                    <div className='w-10/12'>
+                        <HourlyWind
+                            hourForcast={hourForcast}
+                        />
+                    </div>
+                </div>
+
+
+                <div className='flex pl-5 md:w-1/2 items-center my-10 overflow-hidden scrollbar-thin scrollbar-thumb-gray-600 overflow-x-scroll scrollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar-hide hover:scrollbar-default'>
+                    <div className='w-1/12 text-white'>
+                        <BsThermometerSun className='w-14 h-14 text-red-800' />
+                        <p className='text-center font-semibold'>Heat Index</p>
+                    </div>
+                    <div className='w-11/12'>
+                        <HourlyPresure
+                            hourForcast={hourForcast}
+                        />
+                    </div>
+                </div>
+            </dir>
+
+
         </div >
     );
 };

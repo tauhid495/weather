@@ -1,3 +1,4 @@
+import moment from 'moment';
 import React from 'react';
 import { BsWind } from 'react-icons/bs';
 
@@ -5,7 +6,7 @@ import { WiHumidity } from 'react-icons/wi';
 
 const HourlyForcast = ({ hourForcast }) => {
 
-    // console.log(hourForcast);
+    console.log(hourForcast);
 
     return (
         <div className='mb-3'>
@@ -14,10 +15,10 @@ const HourlyForcast = ({ hourForcast }) => {
             <div className='flex'>
                 {hourForcast.map(data => {
                     return (
-                        <div className="mx-2 rounded-2xl bg-base-200 bg-opacity-70 shadow-xl">
+                        <div className="mx-2 rounded-lg bg-base-200 bg-opacity-70 shadow-xl">
                             <div className="p-3 ">
 
-                                <p className='w-24 block mx-auto text-center'>{data.time}</p>
+                                <p className='w-24 block mx-auto text-center'>{moment.unix(data.time_epoch).format('LT')}</p>
 
 
                                 <img className='block mx-auto h-20 w-20' src={data.condition.icon} alt="" />

@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import Navbar from './Components/Navbar';
+import Footer from './pages/Footer';
 
 import Home from './pages/Home';
 
@@ -23,6 +24,7 @@ function App() {
         <Routes>
           <Route path='/' element={<Home findCity={findCity} />} />
         </Routes>
+        <Footer />
       </Navbar>
     </div>
 

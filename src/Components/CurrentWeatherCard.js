@@ -1,3 +1,4 @@
+import moment from 'moment';
 import React, { } from 'react';
 
 const CurrentWeatherCard = ({ cityName, country, date, temp, img, text, feels, humidity, wind, cloud, uv, visibility }) => {
@@ -6,7 +7,7 @@ const CurrentWeatherCard = ({ cityName, country, date, temp, img, text, feels, h
     return (
         <div className='px-4 md:px-10 text-lg'>
             <h1 className='text-2xl mt-4 '>{cityName}, {country}</h1>
-            <h3 className='text-base'>Date & time : {date}</h3>
+            <h3 className='text-base'>{moment.unix(date).format('Do MMM YY, h:mm a')}</h3>
             <div className='flex items-center justify-between'>
                 {/* degree sign= alt + 0176 */}
                 <div className='flex flex-col'>

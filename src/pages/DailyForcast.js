@@ -1,6 +1,7 @@
 import React from 'react';
 import { WiHumidity } from 'react-icons/wi';
-import { BsThermometerHigh, BsThermometerLow } from 'react-icons/bs';
+import { BsThermometerHigh, BsThermometerLow, BsWind } from 'react-icons/bs';
+import moment from 'moment';
 
 const DailyForcast = ({ dayForcast }) => {
     // console.log(dayForcast);
@@ -11,11 +12,11 @@ const DailyForcast = ({ dayForcast }) => {
             <div className=' grid grid-cols-3 gap-x-10'>
                 {dayForcast.map(data => {
                     return (
-                        <div className=" w-52 rounded-2xl bg-base-200 bg-opacity-70 shadow-xl">
+                        <div className=" w-52 rounded-lg bg-base-200 bg-opacity-70 shadow-xl">
                             <div className="p-3 text-">
-                                <p className='text-center'>{data.date}</p>
+                                <p className='text-center text-lg'>{moment.unix(data.date_epoch).format(' dddd')}</p>
                                 <img className='block mx-auto w-20 h-20' src={data.day.condition.icon} alt="" />
-                                <p className='text-center'>Posibility of rain : {data.day.daily_chance_of_rain} %</p>
+                                <p className='text-center text-sm'>Posibility of rain : {data.day.daily_chance_of_rain} %</p>
                                 <div className='flex justify-between'>
                                     <h2 className="text-center font-semibold text-2xl my-2">{data.day.avgtemp_c} °C</h2>
                                     <div className='flex items-center'>
@@ -34,8 +35,10 @@ const DailyForcast = ({ dayForcast }) => {
                                         <p>{data.day.mintemp_c} °C</p>
                                     </div>
                                 </div>
-                                <div className='flex justify-between'>
-                                    <p> Wind : {data.day.maxwind_kph}km/h</p>
+                                <div className='flex justify-between mt-1'>
+                                    <div className='flex items-center'>
+                                        <BsWind /> <p>  {data.day.maxwind_kph}km/h</p>
+                                    </div>
                                     <p>UV : {data.day.uv}</p>
                                 </div>
                                 <p className='text-center'>Sunrise : {data.astro.sunrise}</p>
