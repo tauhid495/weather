@@ -1,10 +1,10 @@
 
-import React, { PureComponent } from 'react';
+import React, { } from 'react';
 import { Area, XAxis, YAxis, CartesianGrid, Tooltip, Line, ComposedChart, Legend, } from 'recharts';
 
 const HourlyPresure = ({ hourForcast }) => {
     const data = hourForcast;
-    console.log(data);
+    // console.log(data);
     return (
         <div className='text-xs'>
             <ComposedChart width={1100} height={120} data={data}>

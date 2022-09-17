@@ -19,7 +19,7 @@ function App() {
 
   return (
 
-    <div className="bg-[url('/src/asset/20.jpg')] bg-cover scrollbar-hide">
+    <div className="bg-[url('/src/asset/20.jpg')] bg-cover scrollbar-hide text-white">
       <Navbar handleSearch={handleSearch}>
         <Routes>
           <Route path='/' element={<Home findCity={findCity} />} />

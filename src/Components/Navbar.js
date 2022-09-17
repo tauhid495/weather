@@ -18,7 +18,7 @@ const Navbar = ({ children, handleSearch }) => {
                 <input id="my-drawer-3" type="checkbox" className="drawer-toggle" />
                 <div className="drawer-content flex flex-col">
                     {/* <!-- Navbar --> */}
-                    <div className="w-full navbar bg-base-300 bg-opacity-70 md:px-14">
+                    <div className="w-full navbar bg-base-300 bg-opacity-10 md:px-14">
 
                         <Link className="flex-1 px-2 mx-2 text-xl md:text-3xl font-semibold" to='/'>
                             Weather Trend
@@ -27,7 +27,7 @@ const Navbar = ({ children, handleSearch }) => {
 
                         {/* search bar */}
                         <form onSubmit={handleSearch} className='hidden md:block '>
-                            <div className="form-control ">
+                            <div className="form-control text-gray-500 ">
                                 <div className="input-group">
                                     <input name='name' type="text" placeholder="Search your city" className="input input-bordered w-96" />
                                     <button type="submit" className="btn btn-square">
@@ -83,7 +83,7 @@ const Navbar = ({ children, handleSearch }) => {
 
                     {/* search bar */}
                     <form onSubmit={handleSearch} className='md:hidden block mx-auto mt-4'>
-                        <div className="form-control ">
+                        <div className="form-control text-gray-500">
                             <div className="input-group">
                                 <input name='name' type="text" placeholder="Search your city" className="input input-bordered w-full" />
                                 <button type="submit" className="btn btn-square">

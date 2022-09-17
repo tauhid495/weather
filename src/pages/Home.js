@@ -6,7 +6,7 @@ import HourlyForcast from './HourlyForcast';
 import HourlyWind from './HourlyWind';
 import Compass from '../asset/compass.png';
 import { BsThermometerSun } from 'react-icons/bs';
-import HourlyPresure from './HourlyPresure';
+import HourlyPresure from './HeatIndex';
 
 
 const Home = ({ findCity }) => {
@@ -34,13 +34,19 @@ const Home = ({ findCity }) => {
 
     useEffect(() => {
 
-        if (findCity !== null) {
-            axios.get(`https://api.weatherapi.com/v1/forecast.json?key=${API_KEY}&q=${findCity}&days=7&aqi=no&alerts=no`)
-                .then((weatherData) => {
-                    console.log(weatherData.data);
+        if (findCity === null) {
+
+            navigator.geolocation.getCurrentPosition(function (position) {
+                setLatitude(position.coords.latitude);
+                setLongitude(position.coords.longitude);
+            })
+            // console.log(latitude);
+            axios.get(`https://api.weatherapi.com/v1/forecast.json?key=${API_KEY}&q=${latitude},${longitude}&days=7&aqi=no&alerts=no`)
+                .then(weatherData => {
+                    // console.log(weatherData.data);
                     setCityName(weatherData.data.location.name)
                     setCountry(weatherData.data.location.country)
-                    setDate(weatherData.data.location.localtime)
+                    setDate(weatherData.data.location.localtime_epoch)
                     setTemp(weatherData.data.current.temp_c)
                     setImg(weatherData.data.current.condition.icon)
                     setText(weatherData.data.current.condition.text)
@@ -56,14 +62,9 @@ const Home = ({ findCity }) => {
         }
 
         else {
-            navigator.geolocation.getCurrentPosition(function (position) {
-                setLatitude(position.coords.latitude);
-                setLongitude(position.coords.longitude);
-            })
-            // console.log(latitude);
-            axios.get(`https://api.weatherapi.com/v1/forecast.json?key=${API_KEY}&q=${latitude},${longitude}&days=7&aqi=no&alerts=no`)
-                .then(weatherData => {
-                    // console.log(weatherData.data);
+            axios.get(`https://api.weatherapi.com/v1/forecast.json?key=${API_KEY}&q=${findCity}&days=7&aqi=no&alerts=no`)
+                .then((weatherData) => {
+                    console.log(weatherData.data);
                     setCityName(weatherData.data.location.name)
                     setCountry(weatherData.data.location.country)
                     setDate(weatherData.data.location.localtime_epoch)
@@ -88,7 +89,7 @@ const Home = ({ findCity }) => {
     return (
         <div className='px-3 md:px-20 md:mt-7'>
             <div className="flex flex-col lg:flex-row">
-                <div className="grid flex-grow md:w-1/2 card bg-base-200 bg-opacity-70 rounded-box ">
+                <div className="grid flex-grow md:w-1/2 card bg-base-200 bg-opacity-10 rounded-box ">
 
                     <CurrentWeatherCard
                         cityName={cityName}
@@ -125,9 +126,10 @@ const Home = ({ findCity }) => {
                 />
             </div>
 
-            <dir className='md:flex'>
-                <div className='flex mr-2 md:w-1/2 items-center my-10 overflow-hidden scrollbar-thin scrollbar-thumb-gray-600 overflow-x-scroll scrollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar-hide hover:scrollbar-default'>
-                    <div className='w-2/12'>
+            <dir className='md:flex items-center'>
+                <img className='md:hidden w-32 mr-2' src={Compass} alt="" />
+                <div className='flex mr-2 md:w-1/2 items-center md:mt-7 mb-10 overflow-hidden scrollbar-thin scrollbar-thumb-gray-600 overflow-x-scroll scrollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar-hide hover:scrollbar-default'>
+                    <div className='hidden md:block w-2/12'>
                         <img className='w-full mr-2' src={Compass} alt="" />
                     </div>
                     <div className='w-10/12'>
@@ -138,12 +140,17 @@ const Home = ({ findCity }) => {
                 </div>
 
 
-                <div className='flex pl-5 md:w-1/2 items-center my-10 overflow-hidden scrollbar-thin scrollbar-thumb-gray-600 overflow-x-scroll scrollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar-hide hover:scrollbar-default'>
-                    <div className='w-1/12 text-white'>
-                        <BsThermometerSun className='w-14 h-14 text-red-800' />
+                <div className='w-1/12 md:hidden text-white'>
+                    <BsThermometerSun className='w-14 h-14 text-yellow-500' />
+                    <p className='text-center font-semibold'>Heat Index</p>
+                </div>
+
+                <div className='md:flex md:pl-5 md:w-1/2 items-center md:my-10 overflow-hidden scrollbar-thin scrollbar-thumb-gray-600 overflow-x-scroll scrollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar-hide hover:scrollbar-default'>
+                    <div className='hidden md:block md:w-1/12 text-white'>
+                        <BsThermometerSun className='w-14 h-14 text-yellow-500' />
                         <p className='text-center font-semibold'>Heat Index</p>
                     </div>
-                    <div className='w-11/12'>
+                    <div className='md:w-11/12'>
                         <HourlyPresure
                             hourForcast={hourForcast}
                         />

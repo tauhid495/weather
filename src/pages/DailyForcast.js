@@ -12,7 +12,7 @@ const DailyForcast = ({ dayForcast }) => {
             <div className=' grid grid-cols-3 gap-x-10'>
                 {dayForcast.map(data => {
                     return (
-                        <div className=" w-52 rounded-lg bg-base-200 bg-opacity-70 shadow-xl">
+                        <div className=" w-52 rounded-lg bg-base-200 bg-opacity-10 shadow-xl">
                             <div className="p-3 text-">
                                 <p className='text-center text-lg'>{moment.unix(data.date_epoch).format(' dddd')}</p>
                                 <img className='block mx-auto w-20 h-20' src={data.day.condition.icon} alt="" />

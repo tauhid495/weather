@@ -6,10 +6,9 @@ import WindNav from '../Components/WindNav';
 
 const HourlyWind = ({ hourForcast }) => {
     // console.log(hourForcast)
-
+    
     return (
         <div className='flex my-3 items-center '>
-
 
             <div className='flex text-center'>
                 {hourForcast.map(data => {
