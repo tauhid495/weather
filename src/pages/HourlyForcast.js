@@ -6,7 +6,6 @@ import { WiHumidity } from 'react-icons/wi';
 
 const HourlyForcast = ({ hourForcast }) => {
 
-    console.log(hourForcast);
 
     return (
         <div className='mb-3'>

@@ -5,7 +5,9 @@ import { themeChange } from 'theme-change'
 
 
 
-const Navbar = ({ children, handleSearch }) => {
+const Navbar = ({ handleSearch, children }) => {
+
+
 
     useEffect(() => {
         themeChange(false);
@@ -92,11 +94,10 @@ const Navbar = ({ children, handleSearch }) => {
                             </div>
                         </div>
                     </form>
-
-                    <div className='mt-5'>
+                    <div>
                         {children}
-                        {/* <Home findCity={city} /> */}
                     </div>
+
                 </div>
                 <div className="drawer-side">
                     <label for="my-drawer-3" className="drawer-overlay"></label>

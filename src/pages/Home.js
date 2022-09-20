@@ -9,81 +9,9 @@ import { BsThermometerSun } from 'react-icons/bs';
 import HourlyPresure from './HeatIndex';
 
 
-const Home = ({ findCity }) => {
-    const API_KEY = `e6f0080b536e470e884124723222306`;
-    const [cityName, setCityName] = useState(null);
-    const [country, setCountry] = useState(null);
-    const [date, setDate] = useState(null);
-    const [temp, setTemp] = useState(null);
-    const [img, setImg] = useState(null);
-    const [text, setText] = useState(null);
-    const [feels, setFeels] = useState(null);
-    const [humidity, setHumidity] = useState(null);
-    const [wind, setWind] = useState(null);
-    const [cloud, setCloud] = useState(null);
-    const [uv, setUv] = useState(null);
-    const [visibility, setVisibility] = useState(null);
-    const [dayForcast, setDayForcast] = useState([]);
-    const [hourForcast, setHourForcast] = useState([]);
-    const [latitude, setLatitude] = useState(null);
-    const [longitude, setLongitude] = useState(null);
-
-    // console.log(setCity);
+const Home = ({ cityName, country, date, temp, img, text, feels, humidity, wind, cloud, uv, visibility, dayForcast, hourForcast }) => {
 
 
-
-    useEffect(() => {
-
-        if (findCity === null) {
-
-            navigator.geolocation.getCurrentPosition(function (position) {
-                setLatitude(position.coords.latitude);
-                setLongitude(position.coords.longitude);
-            })
-            // console.log(latitude);
-            axios.get(`https://api.weatherapi.com/v1/forecast.json?key=${API_KEY}&q=${latitude},${longitude}&days=7&aqi=no&alerts=no`)
-                .then(weatherData => {
-                    // console.log(weatherData.data);
-                    setCityName(weatherData.data.location.name)
-                    setCountry(weatherData.data.location.country)
-                    setDate(weatherData.data.location.localtime_epoch)
-                    setTemp(weatherData.data.current.temp_c)
-                    setImg(weatherData.data.current.condition.icon)
-                    setText(weatherData.data.current.condition.text)
-                    setFeels(weatherData.data.current.feelslike_c)
-                    setHumidity(weatherData.data.current.humidity)
-                    setWind(weatherData.data.current.wind_kph)
-                    setCloud(weatherData.data.current.cloud)
-                    setUv(weatherData.data.current.uv)
-                    setVisibility(weatherData.data.current.vis_km)
-                    setDayForcast(weatherData.data.forecast.forecastday)
-                    setHourForcast(weatherData.data.forecast.forecastday[0].hour)
-                })
-        }
-
-        else {
-            axios.get(`https://api.weatherapi.com/v1/forecast.json?key=${API_KEY}&q=${findCity}&days=7&aqi=no&alerts=no`)
-                .then((weatherData) => {
-                    console.log(weatherData.data);
-                    setCityName(weatherData.data.location.name)
-                    setCountry(weatherData.data.location.country)
-                    setDate(weatherData.data.location.localtime_epoch)
-                    setTemp(weatherData.data.current.temp_c)
-                    setImg(weatherData.data.current.condition.icon)
-                    setText(weatherData.data.current.condition.text)
-                    setFeels(weatherData.data.current.feelslike_c)
-                    setHumidity(weatherData.data.current.humidity)
-                    setWind(weatherData.data.current.wind_kph)
-                    setCloud(weatherData.data.current.cloud)
-                    setUv(weatherData.data.current.uv)
-                    setVisibility(weatherData.data.current.vis_km)
-                    setDayForcast(weatherData.data.forecast.forecastday)
-                    setHourForcast(weatherData.data.forecast.forecastday[0].hour)
-                })
-        };
-
-
-    }, [latitude, findCity]);
 
 
     return (
@@ -157,8 +85,6 @@ const Home = ({ findCity }) => {
                     </div>
                 </div>
             </dir>
-
-
         </div >
     );
 };
