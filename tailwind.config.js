@@ -2,6 +2,7 @@
 module.exports = {
   content: [
     "./src/**/*.{js,jsx,ts,tsx}",
+    ['./src/**/*.{html,js}', './node_modules/tw-elements/dist/js/**/*.js'],
   ],
   daisyui: {
     themes: [
@@ -57,6 +58,7 @@ module.exports = {
     require("daisyui"),
     require('tailwind-scrollbar'),
     require('tailwind-scrollbar-hide'),
+    // require('tw-elements/dist/plugin'),
   ],
   variants: {
     scrollbar: ['rounded']

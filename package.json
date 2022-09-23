@@ -19,6 +19,7 @@
     "recharts": "^2.1.12",
     "tailwind-scrollbar-hide": "^1.1.7",
     "theme-change": "^2.0.2",
+    "tw-elements": "^1.0.0-alpha12",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
