@@ -11,9 +11,9 @@ const HourlyWind = ({ hourForcast }) => {
         <div className='flex my-3 items-center '>
 
             <div className='flex text-center'>
-                {hourForcast.map(data => {
+                {hourForcast.map((data, index) => {
                     return (
-                        <div className=" rounded text-white font-semibold ">
+                        <div key={index} className=" rounded text-white font-semibold ">
                             <div className=" ">
                                 <div>{data.wind_kph}</div>
                                 <div className=''>

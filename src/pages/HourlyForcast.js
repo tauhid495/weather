@@ -12,9 +12,9 @@ const HourlyForcast = ({ hourForcast }) => {
             {/* Hourly forcast page {hourForcast.length} */}
 
             <div className='flex'>
-                {hourForcast.map(data => {
+                {hourForcast.map((data, index) => {
                     return (
-                        <div className="mx-2 rounded-lg bg-base-200 bg-opacity-10 shadow-xl">
+                        <div key={index} className="mx-2 rounded-lg bg-base-200 bg-opacity-10 shadow-xl">
                             <div className="p-3 ">
 
                                 <p className='w-24 block mx-auto text-center'>{moment.unix(data.time_epoch).format('LT')}</p>

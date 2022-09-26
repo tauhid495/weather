@@ -55,13 +55,12 @@ module.exports = {
     ],
   },
   plugins: [
-    require("daisyui"),
+    // require("daisyui"),
     require('tailwind-scrollbar'),
     require('tailwind-scrollbar-hide'),
-    // require('tw-elements/dist/plugin'),
+    require('tw-elements/dist/plugin'),
   ],
   variants: {
     scrollbar: ['rounded']
   }
 }
-
