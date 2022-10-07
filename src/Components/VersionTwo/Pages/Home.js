@@ -7,7 +7,8 @@ import HourlyWind from '../../../pages/HourlyWind';
 import Compass from '../../../asset/compass.png';
 import { BsThermometerSun } from 'react-icons/bs';
 import HourlyPresure from '../../../pages/HeatIndex';
-import { FaSearchLocation } from 'react-icons/fa';
+import { FaSearchLocation, } from 'react-icons/fa';
+import { AiFillSlackCircle } from 'react-icons/ai'
 
 const Home = () => {
     const API_KEY = `e6f0080b536e470e884124723222306`;
@@ -27,10 +28,11 @@ const Home = () => {
     const [hourForcast, setHourForcast] = useState([]);
     const [latitude, setLatitude] = useState(null);
     const [longitude, setLongitude] = useState(null);
+    const [loading, setLoading] = useState(false);
 
 
     useEffect(() => {
-
+        setLoading(true);
         if (latitude === null) {
             navigator.geolocation.getCurrentPosition(function (position) {
                 setLatitude(position.coords.latitude);
@@ -54,19 +56,21 @@ const Home = () => {
                     setVisibility(weatherData.data.current.vis_km)
                     setDayForcast(weatherData.data.forecast.forecastday)
                     setHourForcast(weatherData.data.forecast.forecastday[0].hour)
-
+                    setLoading(false);
                 })
         }
-
-    }, [latitude])
+    }, [latitude, longitude, API_KEY])
 
 
     const handleSearch = (event) => {
+
         event.preventDefault();
         const find = event.target.name.value;
         if (find === null) {
+
             return;
         } else {
+            setLoading(true);
             axios.get(`https://api.weatherapi.com/v1/forecast.json?key=${API_KEY}&q=${find}&days=7&aqi=no&alerts=no`)
                 .then((weatherData) => {
                     // console.log(weatherData);
@@ -85,8 +89,18 @@ const Home = () => {
                     setDayForcast(weatherData.data.forecast.forecastday)
                     setHourForcast(weatherData.data.forecast.forecastday[0].hour)
                 })
+            setLoading(false);
         }
         event.target.reset()
+    }
+
+
+    if (loading === true) {
+        return <div className='h-screen flex items-center justify-center'>
+            <AiFillSlackCircle className="animate-spin text-secondary inline-block w-12 h-12 rounded-full" />
+        </div>
+    } else {
+
     }
 
     return (
